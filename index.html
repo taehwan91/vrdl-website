@@ -8,7 +8,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#141414; --sub:#6d6d6d; --line:#e6e6e3; --bg:#ffffff; --tile:#f2f2f0; --dark:#141414;
+    --ink:#141414; --sub:#6d6d6d; --line:#e8e3d8; --bg:#fbf8f2; --tile:#f1ece2; --dark:#1d3a2c;
+    --red:#a3262a; --gold:#c9a45c; --pine:#1d3a2c;
     --wrap:1240px;
   }
   *{box-sizing:border-box}
@@ -43,6 +44,7 @@
   .btn:hover{opacity:.82}
   .btn.ghost{background:#fff;color:var(--ink)}
   .btn.naver{background:#03C75A;border-color:#03C75A}
+  .btn.ohou{background:#35C5F0;border-color:#35C5F0;color:#fff}
 
   /* sections */
   section{padding:88px 0}
@@ -124,7 +126,44 @@
   .value b{font-family:"Archivo",sans-serif;display:block;font-size:13px;letter-spacing:.06em;margin-bottom:8px}
   .value p{margin:0;color:var(--sub);font-size:14px}
 
-  footer{background:var(--dark);color:#bdbdbd;font-size:12.5px;padding:44px 0 56px}
+  /* ===== HOLIDAY EDITION ===== */
+  .xbar{background:var(--red);color:#fff;font-size:12.5px;letter-spacing:.04em;text-align:center;padding:9px 16px;position:relative;z-index:21}
+  .xbar b{font-family:"Archivo",sans-serif;letter-spacing:.14em;margin-right:10px}
+  header{background:rgba(251,248,242,.94)}
+  .logo .star{color:var(--red);font-size:.55em;vertical-align:super;margin-left:3px}
+  .btn{background:var(--red);border-color:var(--red)}
+  .btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+  .hero{position:relative;background:linear-gradient(180deg,#fbf8f2 0%,#f3eee4 100%)}
+  .hero .eyebrow{font-family:"Archivo",sans-serif;font-weight:700;font-size:12px;letter-spacing:.2em;color:var(--red);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+  .hero .eyebrow:before{content:"";width:28px;height:1px;background:var(--red)}
+  .hero h1 .snow{display:block;color:var(--pine)}
+  .hero-img{position:relative}
+  .hero-img:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(29,58,44,0) 60%,rgba(29,58,44,.28) 100%);pointer-events:none}
+  .hero-tag{position:absolute;left:24px;bottom:22px;z-index:2;color:#fff;font-family:"Archivo",sans-serif;font-size:12px;letter-spacing:.16em}
+  .badge.gift{background:var(--red);border-color:var(--red);color:#fff}
+  .badge.fill{background:var(--pine);border-color:var(--pine)}
+  .garland{height:14px;background:radial-gradient(circle at 7px 7px,var(--red) 3px,transparent 3.5px) 0 0/42px 14px,radial-gradient(circle at 28px 7px,var(--gold) 3px,transparent 3.5px) 0 0/42px 14px,radial-gradient(circle at 17px 7px,var(--pine) 3px,transparent 3.5px) 0 0/42px 14px;opacity:.85}
+  .gift-sec{background:var(--pine);color:#f3eee4;padding:96px 0;position:relative;overflow:hidden}
+  .gift-sec .sec-head h2{color:#fff}
+  .gift-sec .sec-head span{color:#c8d3cb}
+  .gift-sec .sec-head{flex-direction:column;align-items:center;text-align:center;gap:12px;margin-bottom:56px}
+  .gift-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px;max-width:1040px;margin:0 auto}
+  .gift-card{text-align:center;padding:0}
+  .gift-card .no{color:var(--gold);font-size:22px;line-height:1;margin-bottom:18px;display:block}
+  .gift-card b{display:block;font-size:18px;font-weight:500;color:#fff;margin-bottom:10px}
+  .gift-card p{margin:0 auto;max-width:290px;word-break:keep-all;font-size:14px;line-height:1.85;color:#c8d3cb;font-weight:300}
+  .gift-cta{margin-top:56px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+  .gift-cta .btn.ghost{color:#fff;border-color:rgba(255,255,255,.6)}
+  .gift-sec .flake{position:absolute;color:rgba(255,255,255,.08);font-size:220px;line-height:1;right:-30px;top:-40px;pointer-events:none;user-select:none}
+  .story{background:#14291f}
+  .value{border-top-color:var(--red)}
+  #snow{position:fixed;inset:0;pointer-events:none;z-index:15}
+  .lbl-s{display:none}
+  @media (max-width:860px){ .right{gap:10px;font-size:11.5px;letter-spacing:0;white-space:nowrap} .bar .logo{font-size:22px} .lbl-l{display:none} .lbl-s{display:inline} }
+  @media (max-width:860px){ .gift-grid{grid-template-columns:1fr;gap:40px} .gift-sec{padding:64px 0} .xbar{font-size:11.5px} .xbar b{display:none} }
+  @media (prefers-reduced-motion:reduce){ #snow{display:none} }
+
+  footer{background:#14291f;color:#bdbdbd;font-size:12.5px;padding:44px 0 56px}
   footer .logo{color:#fff;font-size:22px;display:block;margin-bottom:14px}
   footer .row{display:flex;flex-wrap:wrap;gap:6px 22px}
   footer a{color:#fff}
@@ -146,23 +185,28 @@
 </head>
 <body>
 
+<canvas id="snow" aria-hidden="true"></canvas>
+<div class="xbar"><b>MERRY CHRISTMAS</b>올겨울, 눈 덮인 여덟 봉우리를 선물해 보세요</div>
 <header>
   <div class="wrap bar">
     <div><button class="menu-btn" id="menuBtn" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button></div>
-    <a class="logo" href="#home">VRDL</a>
+    <a class="logo" href="#home">VRDL<span class="star" aria-hidden="true">✦</span></a>
     <div class="right">
       <a href="#shop" class="hide-m">SHOP</a>
       <a href="#about" class="hide-m">ABOUT</a>
       <a href="https://www.instagram.com/vinyl_record_design_lab/" target="_blank" rel="noopener" class="hide-m">INSTAGRAM ↗</a>
-      <a class="store-link" href="#" target="_blank" rel="noopener">STORE ↗</a>
+      <a class="store-link" href="#" target="_blank" rel="noopener"><span class="lbl-l">스마트스토어</span><span class="lbl-s">네이버</span> ↗</a>
+      <a href="https://store.ohou.se/brands/98805" target="_blank" rel="noopener">오늘의집 ↗</a>
     </div>
   </div>
   <nav class="drawer" id="drawer">
     <div class="wrap">
       <a href="#shop">TISSUE CASE</a>
+      <a href="#gift" style="color:var(--red)">HOLIDAY GIFT ✦</a>
       <a href="#lookbook">LOOKBOOK</a>
       <a href="#about">ABOUT</a>
       <a class="store-link" href="#" target="_blank" rel="noopener">NAVER SMART STORE ↗</a>
+      <a href="https://store.ohou.se/brands/98805" target="_blank" rel="noopener">오늘의집 ↗</a>
       <a href="https://www.instagram.com/vinyl_record_design_lab/" target="_blank" rel="noopener">INSTAGRAM ↗</a>
     </div>
   </nav>
@@ -174,11 +218,12 @@
   <div id="homeView">
     <div class="hero">
       <div class="hero-text">
-        <h1>VINYL<br>RECORD<br>DESIGN<br>LAB</h1>
-        <p>건축가의 감성과 전문성으로 직접 디자인하고 제작하는 친환경 3D프린팅 라이프스타일 브랜드. 일상 속 공간에 조형적 아름다움과 실용성을 더합니다.</p>
-        <div><a class="btn" href="#palbong">팔봉산 티슈케이스 보기</a></div>
+        <div class="eyebrow">HOLIDAY EDITION 2026</div>
+        <h1>SNOW<br>ON THE<br><span class="snow">PEAKS.</span></h1>
+        <p>하얗게 눈 덮인 여덟 개의 봉우리. 건축가가 디자인한 팔봉산 티슈케이스로 연말의 공간에 조용한 겨울 풍경을 들여보세요. 소중한 사람에게 건네는 작은 산 하나.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn" href="#palbong">선물하기 좋은 팔봉산 보기</a><a class="btn ghost" href="#gift">홀리데이 기프트</a></div>
       </div>
-      <div class="hero-img"><img src="img/hero.jpg" alt="테이블 위의 팔봉산 미니 티슈케이스"></div>
+      <div class="hero-img"><img src="img/hero.jpg" alt="테이블 위의 팔봉산 미니 티슈케이스"><span class="hero-tag">✦ WINTER IN PALBONGSAN</span></div>
     </div>
 
     <section id="shop">
@@ -190,14 +235,14 @@
             <div class="chips"><i class="chip" style="background:#FAFAF6"></i></div>
             <h3>PALBONGSAN Mini Tissue Case — Ivory White</h3>
             <div class="price">29,000원</div>
-            <div class="badges"><span class="badge fill">BEST</span></div>
+            <div class="badges"><span class="badge fill">BEST</span><span class="badge gift">GIFT</span></div>
           </a>
           <a class="card" href="#palbong" data-color="bone">
             <div class="ph"><img src="img/palbong-bone.jpg" alt="팔봉산 미니 티슈케이스 본 화이트"></div>
             <div class="chips"><i class="chip" style="background:#E9E8E4"></i></div>
             <h3>PALBONGSAN Mini Tissue Case — Bone White</h3>
             <div class="price">29,000원</div>
-            <div class="badges"><span class="badge">NEW</span></div>
+            <div class="badges"><span class="badge">NEW</span><span class="badge gift">GIFT</span></div>
           </a>
           <div class="card soon" aria-label="준비 중인 제품">
             <div class="ph"><b>Coming Soon</b>다음 시리즈를 준비하고 있어요.</div>
@@ -216,6 +261,24 @@
           <figure class="tall"><img src="img/desk.jpg" alt="수납장 위 조명 옆에 놓인 팔봉산 티슈케이스"></figure>
           <figure><img src="img/shelf.jpg" alt="선반 위 그릇과 화병 사이의 팔봉산 티슈케이스"></figure>
           <figure><img src="img/detail.jpg" alt="팔봉산 봉우리 디테일 클로즈업" style="aspect-ratio:3/2"></figure>
+        </div>
+      </div>
+    </section>
+
+    <div class="garland" aria-hidden="true"></div>
+    <section class="gift-sec" id="gift">
+      <span class="flake" aria-hidden="true">✻</span>
+      <div class="wrap">
+        <div class="sec-head"><h2>Holiday Gift</h2><span>연말 선물로 팔봉산을 고르는 이유</span></div>
+        <div class="gift-grid">
+          <div class="gift-card"><span class="no">✦</span><b>매일 보는 작은 조각</b><p>티슈를 꺼낼 때마다 마주하는 여덟 개의 봉우리. 실용품이면서 공간을 바꾸는 오브제예요.</p></div>
+          <div class="gift-card"><span class="no">❄</span><b>겨울에 가장 잘 어울리는 흰색</b><p>아이보리 화이트와 본 화이트, 두 가지 흰색. 눈 덮인 산처럼 어떤 인테리어에도 조용히 스며들어요.</p></div>
+          <div class="gift-card"><span class="no">✧</span><b>건축가가 직접 설계한 형태</b><p>비례와 곡면을 하나하나 다듬어 만든 디자인. 흔하지 않은 선물을 찾는 분께 추천해요.</p></div>
+        </div>
+        <div class="gift-cta">
+          <a class="btn naver store-link" href="#" target="_blank" rel="noopener">스마트스토어에서 선물하기 ↗</a>
+          <a class="btn ohou" href="https://store.ohou.se/brands/98805" target="_blank" rel="noopener">오늘의집에서 선물하기 ↗</a>
+          <a class="btn ghost" href="#palbong">제품 자세히 보기</a>
         </div>
       </div>
     </section>
@@ -271,9 +334,10 @@
           </div>
           <div class="buy">
             <a class="btn naver store-link" href="#" target="_blank" rel="noopener">네이버 스마트스토어에서 구매하기 ↗</a>
+            <a class="btn ohou" href="https://store.ohou.se/brands/98805" target="_blank" rel="noopener">오늘의집에서 구매하기 ↗</a>
             <a class="btn ghost" href="#shop">다른 제품 보기</a>
           </div>
-          <div class="note">구매와 결제는 네이버 스마트스토어에서 진행됩니다. 버튼을 누르면 새 창으로 이동해요.</div>
+          <div class="note">구매와 결제는 네이버 스마트스토어 또는 오늘의집에서 진행됩니다. 버튼을 누르면 새 창으로 이동해요.</div>
 
           <details open>
             <summary>DETAIL</summary>
@@ -300,7 +364,7 @@
           <details>
             <summary>SHIPPING &amp; RETURN</summary>
             <div class="body">
-              <p>배송, 교환, 반품은 네이버 스마트스토어의 안내를 따릅니다.</p>
+              <p>배송, 교환, 반품은 구매하신 스토어(네이버 스마트스토어·오늘의집)의 안내를 따릅니다.</p>
             </div>
           </details>
         </div>
@@ -321,6 +385,7 @@
       </div>
       <div class="pd-detail-buy">
         <a class="btn naver store-link" href="#" target="_blank" rel="noopener">네이버 스마트스토어에서 구매하기 ↗</a>
+            <a class="btn ohou" href="https://store.ohou.se/brands/98805" target="_blank" rel="noopener">오늘의집에서 구매하기 ↗</a>
         <a class="btn ghost" href="#palbong" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">맨 위로</a>
       </div>
     </section>
@@ -329,7 +394,8 @@
 
 <footer>
   <div class="wrap">
-    <span class="logo">VRDL</span>
+    <span class="logo">VRDL<span class="star" aria-hidden="true">✦</span></span>
+    <p style="margin:0 0 18px;color:#e9e3d6;font-size:14px">Merry Christmas &amp; Happy New Year — 따뜻한 연말 보내세요.</p>
     <div class="row">
       <span>VINYL RECORD DESIGN LAB</span>
       <span>상호 오두막집 · 대표 하태환</span>
@@ -341,6 +407,7 @@
     </div>
     <div class="row" style="margin-top:10px">
       <a class="store-link" href="#" target="_blank" rel="noopener">Naver Smart Store ↗</a>
+      <a href="https://store.ohou.se/brands/98805" target="_blank" rel="noopener">오늘의집 ↗</a>
       <a href="https://www.instagram.com/vinyl_record_design_lab/" target="_blank" rel="noopener">Instagram @vinyl_record_design_lab ↗</a>
       <span>© VRDL. All rights reserved.</span>
     </div>
@@ -407,6 +474,38 @@
   });
   window.addEventListener('hashchange', route);
   route();
+
+  /* ✦ snowfall */
+  (function(){
+    const c = document.getElementById('snow');
+    if (!c || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const x = c.getContext('2d');
+    let w, h, flakes = [];
+    function size(){
+      const d = window.devicePixelRatio || 1;
+      w = innerWidth; h = innerHeight;
+      c.width = w * d; c.height = h * d; x.setTransform(d,0,0,d,0,0);
+      const n = Math.round(Math.min(110, w / 11));
+      flakes = Array.from({length:n}, () => ({
+        x: Math.random()*w, y: Math.random()*h,
+        r: 1 + Math.random()*2.6, s: .35 + Math.random()*.9,
+        d: Math.random()*Math.PI*2, o: .45 + Math.random()*.5
+      }));
+    }
+    function tick(){
+      x.clearRect(0,0,w,h);
+      for (const f of flakes){
+        f.y += f.s; f.d += .01; f.x += Math.sin(f.d)*.4;
+        if (f.y > h + 5){ f.y = -5; f.x = Math.random()*w; }
+        x.beginPath(); x.arc(f.x, f.y, f.r, 0, Math.PI*2);
+        x.fillStyle = 'rgba(255,255,255,'+f.o+')';
+        x.shadowColor = 'rgba(120,130,125,.35)'; x.shadowBlur = 2;
+        x.fill();
+      }
+      requestAnimationFrame(tick);
+    }
+    addEventListener('resize', size); size(); tick();
+  })();
 </script>
 </body>
 </html>
