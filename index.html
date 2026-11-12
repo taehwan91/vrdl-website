@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#141414; --sub:#6d6d6d; --line:#e8e3d8; --bg:#fbf8f2; --tile:#f1ece2; --dark:#1d3a2c;
+    --ink:#141414; --sub:#6d6d6d; --line:#e6e6e3; --bg:#ffffff; --tile:#f2f2f0; --dark:#141414;
     --red:#a3262a; --gold:#c9a45c; --pine:#1d3a2c;
     --wrap:1240px;
   }
@@ -126,7 +126,33 @@
   .value b{font-family:"Archivo",sans-serif;display:block;font-size:13px;letter-spacing:.06em;margin-bottom:8px}
   .value p{margin:0;color:var(--sub);font-size:14px}
 
-  /* ===== HOLIDAY EDITION ===== */
+  .lbl-s{display:none}
+  @media (max-width:860px){ .right{gap:10px;font-size:11.5px;letter-spacing:0;white-space:nowrap} .bar .logo{font-size:22px} .lbl-l{display:none} .lbl-s{display:inline} }
+  html:not(.is-xmas) .x{display:none!important}
+  html.is-xmas .nx{display:none!important}
+
+  footer{background:var(--dark);color:#bdbdbd;font-size:12.5px;padding:44px 0 56px}
+  footer .logo{color:#fff;font-size:22px;display:block;margin-bottom:14px}
+  footer .row{display:flex;flex-wrap:wrap;gap:6px 22px}
+  footer a{color:#fff}
+
+  @media (max-width:860px){
+    .hero{grid-template-columns:1fr;min-height:auto}
+    .hero-img{order:-1;aspect-ratio:4/5}
+    .hero-text{padding:40px 24px 48px}
+    .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
+    .pd-grid,.story-grid{grid-template-columns:1fr;gap:28px}
+    .look{grid-template-columns:1fr}
+    .look .tall{grid-row:auto}
+    .values{grid-template-columns:1fr}
+    .right .hide-m{display:none}
+    section{padding:64px 0}
+    .wrap{padding:0 18px}
+  }
+</style>
+<style id="xmas-css">
+  /* ===== HOLIDAY EDITION (2026-12-31 까지) ===== */
+  :root{--line:#e8e3d8; --bg:#fbf8f2; --tile:#f1ece2; --dark:#1d3a2c}
   .xbar{background:var(--red);color:#fff;font-size:12.5px;letter-spacing:.04em;text-align:center;padding:9px 16px;position:relative;z-index:21}
   .xbar b{font-family:"Archivo",sans-serif;letter-spacing:.14em;margin-right:10px}
   header{background:rgba(251,248,242,.94)}
@@ -158,39 +184,25 @@
   .story{background:#14291f}
   .value{border-top-color:var(--red)}
   #snow{position:fixed;inset:0;pointer-events:none;z-index:15}
-  .lbl-s{display:none}
-  @media (max-width:860px){ .right{gap:10px;font-size:11.5px;letter-spacing:0;white-space:nowrap} .bar .logo{font-size:22px} .lbl-l{display:none} .lbl-s{display:inline} }
   @media (max-width:860px){ .gift-grid{grid-template-columns:1fr;gap:40px} .gift-sec{padding:64px 0} .xbar{font-size:11.5px} .xbar b{display:none} }
   @media (prefers-reduced-motion:reduce){ #snow{display:none} }
-
-  footer{background:#14291f;color:#bdbdbd;font-size:12.5px;padding:44px 0 56px}
-  footer .logo{color:#fff;font-size:22px;display:block;margin-bottom:14px}
-  footer .row{display:flex;flex-wrap:wrap;gap:6px 22px}
-  footer a{color:#fff}
-
-  @media (max-width:860px){
-    .hero{grid-template-columns:1fr;min-height:auto}
-    .hero-img{order:-1;aspect-ratio:4/5}
-    .hero-text{padding:40px 24px 48px}
-    .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
-    .pd-grid,.story-grid{grid-template-columns:1fr;gap:28px}
-    .look{grid-template-columns:1fr}
-    .look .tall{grid-row:auto}
-    .values{grid-template-columns:1fr}
-    .right .hide-m{display:none}
-    section{padding:64px 0}
-    .wrap{padding:0 18px}
-  }
+  footer{background:#14291f}
 </style>
+<script>
+  /* 2027-01-01 00:00 (KST)부터 자동으로 기본 디자인 */
+  (function(){ var xmas = Date.now() < Date.UTC(2026,11,31,15,0,0);
+    if (xmas) document.documentElement.classList.add('is-xmas');
+    else document.getElementById('xmas-css').media = 'not all'; })();
+</script>
 </head>
 <body>
 
-<canvas id="snow" aria-hidden="true"></canvas>
-<div class="xbar"><b>MERRY CHRISTMAS</b>올겨울, 눈 덮인 여덟 봉우리를 선물해 보세요</div>
+<canvas id="snow" class="x" aria-hidden="true"></canvas>
+<div class="xbar x"><b>MERRY CHRISTMAS</b>올겨울, 눈 덮인 여덟 봉우리를 선물해 보세요</div>
 <header>
   <div class="wrap bar">
     <div><button class="menu-btn" id="menuBtn" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button></div>
-    <a class="logo" href="#home">VRDL<span class="star" aria-hidden="true">✦</span></a>
+    <a class="logo" href="#home">VRDL<span class="star x" aria-hidden="true">✦</span></a>
     <div class="right">
       <a href="#shop" class="hide-m">SHOP</a>
       <a href="#about" class="hide-m">ABOUT</a>
@@ -202,7 +214,7 @@
   <nav class="drawer" id="drawer">
     <div class="wrap">
       <a href="#shop">TISSUE CASE</a>
-      <a href="#gift" style="color:var(--red)">HOLIDAY GIFT ✦</a>
+      <a href="#gift" class="x" style="color:var(--red)">HOLIDAY GIFT ✦</a>
       <a href="#lookbook">LOOKBOOK</a>
       <a href="#about">ABOUT</a>
       <a class="store-link" href="#" target="_blank" rel="noopener">NAVER SMART STORE ↗</a>
@@ -218,12 +230,15 @@
   <div id="homeView">
     <div class="hero">
       <div class="hero-text">
-        <div class="eyebrow">HOLIDAY EDITION 2026</div>
-        <h1>SNOW<br>ON THE<br><span class="snow">PEAKS.</span></h1>
-        <p>하얗게 눈 덮인 여덟 개의 봉우리. 건축가가 디자인한 팔봉산 티슈케이스로 연말의 공간에 조용한 겨울 풍경을 들여보세요. 소중한 사람에게 건네는 작은 산 하나.</p>
-        <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn" href="#palbong">선물하기 좋은 팔봉산 보기</a><a class="btn ghost" href="#gift">홀리데이 기프트</a></div>
+        <div class="eyebrow x">HOLIDAY EDITION 2026</div>
+        <h1 class="x">SNOW<br>ON THE<br><span class="snow">PEAKS.</span></h1>
+        <p class="x">하얗게 눈 덮인 여덟 개의 봉우리. 건축가가 디자인한 팔봉산 티슈케이스로 연말의 공간에 조용한 겨울 풍경을 들여보세요. 소중한 사람에게 건네는 작은 산 하나.</p>
+        <div class="x" style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn" href="#palbong">선물하기 좋은 팔봉산 보기</a><a class="btn ghost" href="#gift">홀리데이 기프트</a></div>
+        <h1 class="nx">VINYL<br>RECORD<br>DESIGN<br>LAB</h1>
+        <p class="nx">건축가의 감성과 전문성으로 직접 디자인하고 제작하는 친환경 3D프린팅 라이프스타일 브랜드. 일상 속 공간에 조형적 아름다움과 실용성을 더합니다.</p>
+        <div class="nx"><a class="btn" href="#palbong">팔봉산 티슈케이스 보기</a></div>
       </div>
-      <div class="hero-img"><img src="img/hero.jpg" alt="테이블 위의 팔봉산 미니 티슈케이스"><span class="hero-tag">✦ WINTER IN PALBONGSAN</span></div>
+      <div class="hero-img"><img src="img/hero.jpg" alt="테이블 위의 팔봉산 미니 티슈케이스"><span class="hero-tag x">✦ WINTER IN PALBONGSAN</span></div>
     </div>
 
     <section id="shop">
@@ -235,14 +250,14 @@
             <div class="chips"><i class="chip" style="background:#FAFAF6"></i></div>
             <h3>PALBONGSAN Mini Tissue Case — Ivory White</h3>
             <div class="price">29,000원</div>
-            <div class="badges"><span class="badge fill">BEST</span><span class="badge gift">GIFT</span></div>
+            <div class="badges"><span class="badge fill">BEST</span><span class="badge gift x">GIFT</span></div>
           </a>
           <a class="card" href="#palbong" data-color="bone">
             <div class="ph"><img src="img/palbong-bone.jpg" alt="팔봉산 미니 티슈케이스 본 화이트"></div>
             <div class="chips"><i class="chip" style="background:#E9E8E4"></i></div>
             <h3>PALBONGSAN Mini Tissue Case — Bone White</h3>
             <div class="price">29,000원</div>
-            <div class="badges"><span class="badge">NEW</span><span class="badge gift">GIFT</span></div>
+            <div class="badges"><span class="badge">NEW</span><span class="badge gift x">GIFT</span></div>
           </a>
           <div class="card soon" aria-label="준비 중인 제품">
             <div class="ph"><b>Coming Soon</b>다음 시리즈를 준비하고 있어요.</div>
@@ -265,8 +280,8 @@
       </div>
     </section>
 
-    <div class="garland" aria-hidden="true"></div>
-    <section class="gift-sec" id="gift">
+    <div class="garland x" aria-hidden="true"></div>
+    <section class="gift-sec x" id="gift">
       <span class="flake" aria-hidden="true">✻</span>
       <div class="wrap">
         <div class="sec-head"><h2>Holiday Gift</h2><span>연말 선물로 팔봉산을 고르는 이유</span></div>
@@ -394,8 +409,8 @@
 
 <footer>
   <div class="wrap">
-    <span class="logo">VRDL<span class="star" aria-hidden="true">✦</span></span>
-    <p style="margin:0 0 18px;color:#e9e3d6;font-size:14px">Merry Christmas &amp; Happy New Year — 따뜻한 연말 보내세요.</p>
+    <span class="logo">VRDL<span class="star x" aria-hidden="true">✦</span></span>
+    <p class="x" style="margin:0 0 18px;color:#e9e3d6;font-size:14px">Merry Christmas &amp; Happy New Year — 따뜻한 연말 보내세요.</p>
     <div class="row">
       <span>VINYL RECORD DESIGN LAB</span>
       <span>상호 오두막집 · 대표 하태환</span>
@@ -478,7 +493,7 @@
   /* ✦ snowfall */
   (function(){
     const c = document.getElementById('snow');
-    if (!c || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!c || !document.documentElement.classList.contains('is-xmas') || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const x = c.getContext('2d');
     let w, h, flakes = [];
     function size(){
